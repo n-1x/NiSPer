@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <meta charset="utf-8"/> 
+        <script src="src/p5.min.js" type="text/javascript"></script>
+        <script src="src/vis.js" type="text/javascript"></script>
+        <script src="src/main.js" type="text/javascript"></script>
+        <!-- <script src="src/testing.js" type="text/javascript"></script> -->
+        <link rel="stylesheet" href="main.css" type="text/css" />
+        <link rel="icon" href="favicon.png">
+        <title>NiSPer</title>
+    </head>
+
+    <body>
+		<div id="content">
+            <div id="menu">
+                <label class="fileUpload">
+                    Load
+                    <input type="file" id="romChooser" accept=".jas, text/*">
+                </label>
+                <button onclick="fullReset()">Reset</button>
+                <button onclick="runStep()">Step</button>
+                <button onclick="runFetch()">Fetch</button>
+                <button onclick="runExecute()">Execute</button>
+                <button onclick="runCycle()">One cycle</button>
+                <button onclick="runUntilHalt()">Full run</button>
+                <button onclick="tick()">Start</button>
+                <button onclick="haltAfterTick = true;">Stop</button>
+                <button id="animButton" onclick="toggleAnimation()">Anim: Med</button>
+                <button onclick="toggleHelp()">Opcodes</button>
+            </div>
+
+            <div id="center">
+                <div id="visual">
+                    <h3 id="state">Loading...</h3>
+                    <div id="vis"></div>
+                </div>
+        
+                <div id="panels">
+                    <div class="tabbed">
+                        <button id="hexEditorButton" onclick="changeTab('hexEditor')" class="active">RAM</button>
+                        <button id="registersButton" onclick="changeTab('registers')">Registers</button>
+                        <button id="dasmButton" onclick="changeTab('dasm')">Disassembly</button>
+
+                        <div id="hexEditor" class="noSelect active"></div>
+                        <div id="registers">
+                            <button onclick="resetRegisters()">Reset All</button>
+                            <div id="regViews">
+                            </div>
+                        </div>
+                        <div id="dasm" class="noSelect"></div>
+                    </div>
+    
+                    <div class="tabbed" id="output">
+                        <button class="active">STDIO</button>
+                        <textarea id="stdio" readonly></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div id="help" class="hidden">
+                <h2>Opcode List</h2>
+                <div id="opcodeList"></div>
+            </div>
+        </div>
+    </body>
+</html>

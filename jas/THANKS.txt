@@ -1,0 +1,2 @@
+The files 'hello.jas' and 'instruct.mco' are not my own work, and are taken from the freely available JASP toolkit by which this software was inspired. It can be found at http://www.brittunculi.com/jasp/
+They were created by Mark Burrell, and all copyrights belong to him.

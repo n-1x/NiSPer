@@ -1,0 +1,11 @@
+*Author: Nicholas J D Dean
+a660 *initialise stack pointer at 0x60
+f300 *enable interrupts
+fa02 *run interrupt 2
+f000 *halt
+
+org 20 *interrupt handler
+ff00 *return from interrupt
+
+org f2 *interrupt base + 2 (for interrupt 2)
+0020 *location of interrupt handler for interrupt 2

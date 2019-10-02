@@ -1,0 +1,245 @@
+:root {
+    --dark: rgb(40, 37, 44);
+    --mid: rgb(65, 61, 71);
+    --light: rgb(86, 79, 94);
+    --accent: rgb(96, 59, 110);
+    --accentHover: rgb(116, 44, 143);
+    --text: rgb(255, 255, 255);
+    --marLoc: rgb(255, 230, 0);
+    --pcLoc: teal;
+    
+    font-family: monospace;
+    font-size: 1.3em;
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--text);
+    margin: 0;
+    overflow-y: hidden;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    height: 100%;
+    max-height: 100%;
+}
+
+#content h2 {
+    margin: 0 0 0.5em 0;
+}
+
+#menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#menu input[type="file"] {
+    display: none;
+}
+
+button, label, input, textarea {
+    font-size: 1em;
+    font-family: monospace;
+}
+
+#menu > *, button {
+    border-radius: 5px;
+    padding: 0.5em;
+    margin: 0.5 0.5em 0.25em 0;
+    border: none;
+    background-color: var(--accent);
+    color: var(--text);
+    transition: background-color 0.2s;
+    text-align: center;
+}
+
+#menu > button:hover, #menu > label:hover, button:hover {
+    background-color: var(--accentHover);
+}
+
+#center {
+    display: flex;
+    justify-content: center;
+}
+
+#visual {
+    min-width: 270px;
+    text-align: center;
+    padding-right: 1.5%;
+}
+
+#panels {
+    width: 65ch;
+    display: flex;
+    flex-direction: column;
+    padding: 1em 0;
+}
+
+#panels > div {
+    margin-bottom: 1em;
+}
+
+.tabbed > div {
+    background-color: var(--light);
+    padding: 0.5em;
+}
+
+/*!important is okay here because the intention is
+to ovverride specificity rules*/
+.tabbed > div:not(.active) {
+    display: none !important;
+}
+
+.tabbed > button {
+    background-color: var(--mid);
+    color: var(--text);
+    border: none;
+    padding: 0.5em;
+    margin: 0;
+    border-radius: 5px 5px 0 0;
+    word-wrap: break-word;
+    width: min-content;
+}
+
+.tabbed > button:hover {
+    background-color: var(--accent);
+}
+
+#panels button.active {
+    background-color: var(--light);
+}
+
+#regViews {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#output {
+    max-width: 80ch;
+    display: flex;
+    flex-direction: column;
+}
+
+#output textarea {
+    height: 20ch;
+    margin: 0;
+    resize: none;
+    border: none;
+    background-color: var(--light);
+    color: inherit;
+    overflow: auto auto;
+    padding: 0.5em;
+}
+
+.regView {
+    background-color: var(--mid);
+    padding: 0.5em 1em;
+    margin: 0 0.5em 0.5em 0;
+    text-align: left;
+    width: 6ch;
+}
+
+.regView h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.regView input {
+    background-color: var(--mid);
+    color: var(--text);
+    padding: 0.3em;
+    width: 3.2em;
+    border: none;
+    margin: 0.5em 0 0 0;
+    transition: background-color 0.2s;
+}
+
+.regView input:hover {
+    background-color: var(--dark);
+}
+
+#hexEditor {
+    display: grid;
+    padding: 0.5em;
+    grid-template-columns: min-content repeat(8, min-content) repeat(8, 2ch);
+    text-align: center;
+}
+
+#content #panels span.offset {
+    padding: 0 1ch;
+    background-color: var(--mid);
+}
+
+#hexEditor input {
+    color: inherit;
+    background-color: inherit;
+    text-align: center;
+    font-family: inherit;
+    width: 5ch;
+    border: none;
+    cursor: default;
+}
+
+#hexEditor input.hex.pcLoc, #registers .pcLoc, #dasm span.pcLoc {
+    background-color: var(--pcLoc);
+}
+
+#hexEditor input.hex.marLoc, #registers .marLoc, #dasm span.marLoc {
+    color: var(--marLoc);
+}
+
+#hexEditor input.hex.ramHover, .ramHover {
+    background-color: var(--accent);
+}
+
+#dasm {
+    display: grid;
+    grid-template-columns: min-content 24ch;
+    padding: 0.5em;
+}
+
+#dasm span {
+    padding: 1px 0 1px 0.5ch;
+}
+
+#help {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 48ch;
+    height: 70%;
+    transform: translate(-50%, -50%);
+    background-color:var(--mid);
+    border: 10px solid var(--accent);
+    padding: 1em;
+}
+
+#help.hidden {
+    display:none;
+}
+
+#opcodeList {
+    display: grid;
+    grid-template-columns: 4ch 16ch 24ch;
+    justify-content: center;
+    row-gap: 0.5em;
+    overflow-y: scroll;
+    max-height: 90%;
+}
+
+#opcodeList > p {
+    height: 6vh;
+    background-color: var(--dark);
+    margin: 0;
+    padding: 0.5em;
+}
+
+.noSelect {
+    -moz-user-select: none;
+    user-select: none;
+}

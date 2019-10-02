@@ -1,0 +1,37 @@
+*
+* Our hello world program
+*
+ORG 00 
+A6FE        MOVE #$FE,SP    * initialize stack pointer
+9120        MOVE #$20,B     * Point at data
+9800 main   MOVE (B),A      * Get a character
+8000        CMP  #$00,A     * Is this the terminator?
+C108        BEQ  done       * Yes - jump to end
+8D00        PUSH B          * Save B on the stack
+93E3 print  MOVE $E3,B      * Move OSR to B
+8100        CMP  #$00,B     * Can we print ?
+C1FD        BEQ  print      * If not, grab OSR again
+A2E2        MOVE A,$E2      * Output this char
+8F00        POP  B          * Retrieve B
+0101        ADD  #$01,B     * Increment data address
+E002        JMP  main       * Repeat
+F000 done   HALT            * Stop the program
+
+* the data 
+* (stored as unpacked ASCII)
+org 20 
+0048      H
+0065      e
+006C      l
+006C      l
+006F      o
+0020      
+0057      W
+006F      o
+0072      r
+006C      l
+0064      d
+0021      !
+000D      <cr>
+000A      <lf>
+0000      Terminator
