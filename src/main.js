@@ -807,6 +807,18 @@ function updateDasm(ramOffset) {
         `${opcodeString}: ${getDisassembly(memoryVal)}`;
 }
 
+function refreshDasm() {
+    for (let i = 0; i < dasm.childNodes.length; i += 2) {
+        const offsetNode = dasm.childNodes[i];
+        const dasmStringNode = dasm.childNodes[i+1];
+        const index = dasmStartLine + i;
+        const memoryVal = ram[index];
+
+        offsetNode.innerText = toHexString(index);
+        dasmStringNode.innerText = `${toHexString(memoryVal)}: ${getDisassembly(memoryVal)}`;
+    }
+}
+
 
 //handler for scroll event on disassembly tab
 function scrollDasm(e) {
@@ -991,6 +1003,7 @@ function memInit() {
     }
 
     //create the disassembly elements
+    console.log("creating disassembly elements")
     for (let y = 0; y < HEXEDIT_NUM_LINES; ++y) {
         const offsetSpan = document.createElement("span");
         const valueSpan = document.createElement("span");
@@ -1203,12 +1216,17 @@ window.onload = () => {
         currInst = opcodes.fetch;
         setStateText("Fetch");
         createOpcodeList();
-    });
 
+        // refresh dasm in case a program has been loaded before 
+        // this fetch returned
+        refreshDasm();
+    });
+    
     //load the included hello.jas file
     fetch("jas/hello.jas").then(res => {
         return res.text();
     }).then(res => {
+        console.log("parsing hello.jas rom")
         parseROM(res);
     });
 };
